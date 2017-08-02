@@ -5,6 +5,8 @@
     <br />
     <br />
     <br />
+
+    <div class="col-xs-12 col-md-8">
     {{ pos.x }} {{ pos.y }}
       <div v-for="(lines, l) in grid">
         <div v-for="(elem, c) in lines">
@@ -19,6 +21,7 @@
     <button @click.prevent="executeCode"> start </button>
     <button @click.prevent="executeItem(stack.shift())"> move </button>
   </div>
+</div>
 </template>
 
 <script>

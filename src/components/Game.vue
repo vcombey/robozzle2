@@ -1,7 +1,9 @@
 <template>
-  <div>
+  <div class="row">
+  <div class="col-md-8">
     <grid :code="code"></grid>
-    {{ code }}
+  </div>
+  <div class="col-md-4">
     <h2> Colors</h2>
     <div>
     <div :style="{ backgroundColor:'blue' }" class="item" @click="selectedColor='blue'">
@@ -43,6 +45,7 @@
     <br />
     <br />
     <br />
+  </div>
   </div>
   </div>
 </template>
