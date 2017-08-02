@@ -19,6 +19,8 @@
         <br />
       </div>
     <button @click.prevent="executeCode"> start </button>
+    <button @click.prevent="pause"> pause </button>
+    <button @click.prevent="reset"> reset </button>
     <button @click.prevent="executeItem(stack.shift())"> move </button>
   </div>
 </div>
@@ -31,6 +33,7 @@
     props: ['code'],
     data () {
       return {
+        intervalId: 0,
         grid: [
           [null, null, 'grey', 'blue'],
           [null, 'blue', 'grey', null],
@@ -39,6 +42,8 @@
         ],
         stack: this.code.f1.slice(0),
         pos: {l: 3, c: 0},
+        initialPos: {l: 3, c: 0},
+        initialDir: 0,
         dir: 0
       }
     },
@@ -61,9 +66,9 @@
         }
       },
       executeItem (elem) {
-        console.log(elem.color)
-        console.log(this.grid[this.pos.l][this.pos.c].color)
-        if (elem.color === this.grid[this.pos.l][this.pos.c].color || elem.color === null || this.grid[this.pos.l][this.pos.c].color == null) {
+        console.log(this.initialPos)
+        console.log(this.grid[this.pos.l][this.pos.c])
+        if (elem.color === this.grid[this.pos.l][this.pos.c] || elem.color === 'grey' || this.grid[this.pos.l][this.pos.c] === null) {
           if (elem.sign === 'straight') {
             console.log('straight')
             this.move()
@@ -77,9 +82,29 @@
         }
       },
       executeCode () {
-        for (var elem in this.stack) {
-          this.executeItem(elem)
+        this.intervalId = setInterval(() => {
+          if (this.stack.length === 0) {
+            clearInterval(this.intervalId)
+          } else {
+            this.executeItem(this.stack.shift())
+          }
+        }, 300)
+      },
+      pause () {
+        if (this.intervalId) {
+          clearInterval(this.intervalId)
+          this.intervalId = 0
         }
+      },
+      reset () {
+        if (this.intervalId) {
+          clearInterval(this.intervalId)
+          this.intervalId = 0
+        }
+        this.stack = this.code.f1.slice(0)
+        this.pos.c = this.initialPos.c
+        this.pos.l = this.initialPos.l
+        this.dir = this.initialDir
       }
     },
     components: {
@@ -91,10 +116,10 @@
 
 <style scoped>
   .item {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     float: left;
     background-color: grey;
-    border: 5px solid white;
+    border: 1px solid white;
   }
 </style>
