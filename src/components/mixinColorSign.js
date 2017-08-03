@@ -10,7 +10,15 @@ export const colorSign = {
   },
   methods: {
     getColorItem (item) {
-      return item.color !== null ? item.color : 'grey'
+      if (item.color === 'red') {
+        return '#FD9B28'
+      } else if (item.color === 'blue') {
+        return '#44BEED'
+      } else if (item.color === 'green') {
+        return '#89E02B'
+      } else if (item.color === 'grey') {
+        return '#ECECEC'
+      }
     },
     getSign (item) {
       return this.signSources[item.sign]

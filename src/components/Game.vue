@@ -6,33 +6,33 @@
   <div class="col-md-4">
     <h2> Colors</h2>
     <div>
-    <div id='blue' v-active="" :style="{ backgroundColor:'blue' }" class="item" @click="selectedColor='blue'">
+    <div id='blue' v-active="" :style="{ backgroundColor:'#44BEED' }" class="item" @click="selectedColor='blue'">
     </div>
 
-    <div :style="{ backgroundColor:'green' }" :class="['item', {'on': selectedColor == 'green'}]" @click="selectedColor='green'">
+    <div :style="{ backgroundColor: '#89E02B' }" :class="['item', {'on': selectedColor == 'green'}]" @click="selectedColor='green'">
     </div>
 
-    <div :style="{ backgroundColor:'red' }" :class="['item', {'on': selectedColor == 'red'}]" @click="selectedColor='red'">
+    <div :style="{ backgroundColor:'#FD9B28' }" :class="['item', {'on': selectedColor == 'red'}]" @click="selectedColor='red'">
     </div>
-    <div :style="{ backgroundColor:'grey' }" :class="['item', {'on': selectedColor == 'grey'}]" @click="selectedColor='grey'">
+    <div :style="{ backgroundColor:'#ECECEC' }" :class="['item', {'on': selectedColor == 'grey'}]" @click="selectedColor='grey'">
     </div>
       <br />
       <br />
     </div>
     <h2> Arrows</h2>
     <div>
-      <div :style="{ backgroundColor:'grey' }" :class="['item', {'on': selectedSign == 'turnLeft'}]" @click="selectedSign='turnLeft'">
+      <div  :class="['item', {'on': selectedSign == 'turnLeft'}]" @click="selectedSign='turnLeft'">
         <img :src="signSources['turnLeft']">
       </div>
-      <div :style="{ backgroundColor:'grey' }" :class="['item', {'on': selectedSign == 'turnRight'}]" @click="selectedSign='turnRight'">
+      <div  :class="['item', {'on': selectedSign == 'turnRight'}]" @click="selectedSign='turnRight'">
         <img :src="signSources['turnRight']"></div>
 
-      <div :style="{ backgroundColor:'grey' }" :class="['item', {'on': selectedSign == 'straight'}]" @click="selectedSign='straight'">
+      <div  :class="['item', {'on': selectedSign == 'straight'}]" @click="selectedSign='straight'">
         <img :src="signSources['straight']"></div>
-      <div :style="{ backgroundColor:'grey' }" :class="['item', {'on': selectedSign == 'f1'}]" @click="selectedSign='f1'">
+      <div  :class="['item', {'on': selectedSign == 'f1'}]" @click="selectedSign='f1'">
         F1
       </div>
-        <div :style="{ backgroundColor:'grey' }" :class="['item', {'on': selectedSign == 'f2'}]" @click="selectedSign='f2'">
+        <div :class="['item', {'on': selectedSign == 'f2'}]" @click="selectedSign='f2'">
           F2
         </div>
     </div>
@@ -102,12 +102,7 @@ export default {
 </script>
 
 <style scoped>
-.item {
-  width: 35px;
-  height: 35px;
-  float: left;
-  border: 1px solid white;
-}
+
 .on {
   border: 2px solid black;
 }

@@ -16,11 +16,5 @@
 </script>
 
 <style>
-  .item {
-    width: 35px;
-    height: 35px;
-    float: left;
-    background-color: grey;
-    border: 1px solid white;
-  }
+
 </style>

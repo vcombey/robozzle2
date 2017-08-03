@@ -46,5 +46,11 @@ export default {
 </script>
 
 <style>
-
+.item {
+  width: 42px;
+  height: 42px;
+  float: left;
+  background-color: #ECECEC;
+  border: 1px solid white;
+}
 </style>
