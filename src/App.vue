@@ -33,8 +33,10 @@
         </b-nav>
       </b-collapse>
     </b-navbar>
+    <br><br><br>
 <div class="container-fluid">
-    <router-view></router-view>
+
+  <router-view></router-view>
 </div>
   </div>
 </template>
@@ -47,6 +49,13 @@ export default {
 
 <style>
 .item {
+  width: 42px;
+  height: 42px;
+  float: left;
+  background-color: #ECECEC;
+  border: 1px solid #ECECEC;
+}
+.item-fn {
   width: 42px;
   height: 42px;
   float: left;
