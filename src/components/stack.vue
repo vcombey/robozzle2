@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import { colorSign } from './mixinColorSign.vue'
+  import { colorSign } from './mixinColorSign.js'
   export default {
     props: ['stack'],
     mixins: [colorSign]
