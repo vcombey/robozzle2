@@ -10,7 +10,9 @@ export const colorSign = {
   },
   methods: {
     getColorItem (item) {
-      if (item.color === 'red') {
+      if (item === null) {
+        return '#ECECEC'
+      } else if (item.color === 'red') {
         return '#FD9B28'
       } else if (item.color === 'blue') {
         return '#44BEED'

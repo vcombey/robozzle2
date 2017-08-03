@@ -9,10 +9,13 @@
         {{ pos.x }} {{ pos.y }}
         <table class="table-game">
           <tr v-for="(lines, l) in grid">
-            <td v-for="(elem, c) in lines" class="item" :style="{ backgroundColor: getColorItem(elem) }">
+            <td v-for="(elem, c) in lines" :class="{'item-fn' : elem !== null, 'item' : elem == null}" :style="{ backgroundColor: getColorItem(elem) }">
               <player v-if="l == pos.l && c == pos.c" :dir="dir"
                       src='data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMS4xLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDIyLjA2MiAyMi4wNjIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDIyLjA2MiAyMi4wNjI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMzJweCIgaGVpZ2h0PSIzMnB4Ij4KPGc+Cgk8cGF0aCBkPSJNMTAuNTQ0LDExLjAzMWw2Ljc0Mi02Ljc0MmMwLjgxLTAuODA5LDAuODEtMi4xMzUsMC0yLjk0NGwtMC43MzctMC43MzcgICBjLTAuODEtMC44MTEtMi4xMzUtMC44MTEtMi45NDUsMEw0Ljc2OSw5LjQ0M2MtMC40MzUsMC40MzQtMC42MjgsMS4wMTctMC41OTcsMS41ODljLTAuMDMxLDAuNTcxLDAuMTYyLDEuMTU0LDAuNTk3LDEuNTg4ICAgbDguODM1LDguODM0YzAuODEsMC44MTEsMi4xMzUsMC44MTEsMi45NDUsMGwwLjczNy0wLjczN2MwLjgxLTAuODA4LDAuODEtMi4xMzQsMC0yLjk0M0wxMC41NDQsMTEuMDMxeiIgZmlsbD0iIzAwMDAwMCIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo='>
               </player>
+              <div style="display: flex">
+              <img v-if="grid[l][c] !== null && grid[l][c].star" src="http://icon-icons.com/icons2/206/PNG/256/Star_24682.png" class="star">
+              </div>
             </td>
           </tr>
         </table>
@@ -38,25 +41,27 @@
       return {
         intervalId: 0,
         grid: [
-          [{star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}],
-          [{star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}],
-          [{star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}],
-          [{star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'blue'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}],
-          [{star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'blue'}, {star: 0, color: 'blue'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}],
-          [{star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'blue'}, {star: 0, color: 'blue'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}],
-          [{star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'blue'}, {star: 0, color: 'blue'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}],
-          [{star: 0, color: 'blue'}, {star: 0, color: 'blue'}, {star: 0, color: 'blue'}, {star: 0, color: 'blue'}, {star: 0, color: 'green'}, {star: 0, color: 'blue'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}],
-          [{star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}],
-          [{star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}],
-          [{star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}],
-          [{star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}],
-          [{star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}, {star: 0, color: 'grey'}]
+          [null, null, null, null, null, null, null, null, null, null, null, null, null],
+          [null, null, null, null, null, null, null, null, null, null, null, null, null],
+          [null, null, null, null, null, null, null, null, null, null, null, null, null],
+          [null, null, null, null, null, null, null, null, {star: 1, color: 'blue'}, null, null, null, null],
+          [null, null, null, null, null, null, null, {star: 0, color: 'blue'}, {star: 0, color: 'blue'}, null, null, null, null],
+          [null, null, null, null, null, null, {star: 0, color: 'blue'}, {star: 0, color: 'blue'}, null, null, null, null, null],
+          [null, null, null, null, null, {star: 0, color: 'blue'}, {star: 0, color: 'blue'}, null, null, null, null, null, null],
+          [{star: 0, color: 'blue'}, {star: 0, color: 'blue'}, {star: 0, color: 'blue'}, {star: 0, color: 'blue'}, {star: 0, color: 'green'}, {star: 0, color: 'blue'}, null, null, null, null, null, null, null],
+          [null, null, null, null, null, null, null, null, null, null, null, null, null],
+          [null, null, null, null, null, null, null, null, null, null, null, null, null],
+          [null, null, null, null, null, null, null, null, null, null, null, null, null],
+          [null, null, null, null, null, null, null, null, null, null, null, null, null],
+          [null, null, null, null, null, null, null, null, null, null, null, null, null]
         ],
         stack: this.code.f1.slice(0),
         pos: {l: 7, c: 0},
         initialPos: {l: 7, c: 0},
         initialDir: 1,
-        dir: 1
+        dir: 1,
+        nbStar: 1,
+        star: 0
       }
     },
     methods: {
@@ -94,11 +99,16 @@
             console.log(fn)
             this.stack = this.code[fn].slice(0).concat(this.stack)
           }
+          if (this.grid[this.pos.l][this.pos.c].star) {
+            this.star++
+          }
         }
       },
       executeCode () {
         this.intervalId = setInterval(() => {
-          if (this.stack.length === 0) {
+          if (this.star === this.nbStar) {
+            alert('gagné')
+          } if (this.stack.length === 0) {
             clearInterval(this.intervalId)
           } else {
             this.executeItem(this.stack.shift())
@@ -120,6 +130,7 @@
         this.pos.c = this.initialPos.c
         this.pos.l = this.initialPos.l
         this.dir = this.initialDir
+        this.star = 0
       }
     },
     components: {
@@ -139,6 +150,11 @@
 }
 .table-game {
   margin: auto;
+  align-self: center;
+}
+.star {
+  width: 35px;
+  height: 35px;
   align-self: center;
 }
 </style>

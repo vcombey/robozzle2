@@ -3,7 +3,7 @@
       <div class="col-md-4"></div>
       <div class="col-md-8">
       <transition-group name="slide">
-  <div v-for="(elem, i) in stack.slice(0,20)" v-bind:style="{ backgroundColor: getColorItem(elem) }" class="item" :key="elem">
+  <div v-for="(elem, i) in stack.slice(0,20)" v-bind:style="{ backgroundColor: getColorItem(elem) }" class="item-fn" :key="elem">
     <img v-if="getSign(elem)" :src="getSign(elem)">
     <h2 v-else> {{ elem.sign }} </h2>
   </div>
